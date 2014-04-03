@@ -1,0 +1,9 @@
+$ cat .gitignore
+*.tmp
+*.suo
+*.exe
+*.vshost
+[Bb]in/
+[Dd]ebug/
+[Oo]bj/
+[Rr]elease/
