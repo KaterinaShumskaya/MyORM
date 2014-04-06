@@ -8,6 +8,8 @@ namespace Persons
 {
     using System.Configuration;
 
+    using Persons.Domain;
+
     class Program
     {
 
@@ -15,7 +17,7 @@ namespace Persons
         /// Напечатать всех.
         /// </summary>
         /// <param name="accessor">Провайдер доступа к данным.</param>
-        private static void Print(IPersonAccessor accessor)
+        private static void Print(IDataAccessor<ContactInfo> accessor)
         {
             foreach (var person in accessor.GetAll())
             {
@@ -42,25 +44,25 @@ namespace Persons
                                   new Person("Зверева", "Анна", "Леонидовна", 26)
                               };*/
 
-            //IPersonAccessor accessor = new FilePersonAccessor("data", persons);
-            //IPersonAccessor accessor = new ListPersonAccessor(persons);
-            IPersonAccessor accessor = new MyORM();
+            //IDataAccessor accessor = new FileDataAccessor("data", persons);
+            //IDataAccessor accessor = new ListDataAccessor(persons);
+            IDataAccessor<ContactInfo> accessor = new MyORM<ContactInfo>();
             var people = accessor.GetAll();
             foreach (var person in people)
             {
                 Console.WriteLine(person.ToString());
             }
+
             Console.WriteLine();
-            Console.Write("Введите фамилию для поиска:");
-            string lastName = Console.ReadLine();
-            people = accessor.GetByLastName(lastName);
-            foreach (var person in people)
-            {
-                Console.WriteLine(person.ToString());
-            }
+            Console.Write("Введите Id для поиска:");
+            int id = int.Parse(Console.ReadLine());
+            var pers = accessor.GetById(id);
+           
+            Console.WriteLine(pers.ToString());
+            
             Console.WriteLine();
-            accessor = new ADONetPersonAccessor();
-            accessor.DeleteByLastName(lastName);
+            
+            accessor.DeleteById(id);
             people = accessor.GetAll();
             foreach (var person in people)
             {
@@ -69,14 +71,14 @@ namespace Persons
             Console.WriteLine();
            
             Console.Write("Введите фамилию:");
-            lastName = Console.ReadLine();
+            var address = Console.ReadLine();
             Console.Write("Введите имя:");
-            var firstName = Console.ReadLine();
+            var phone = Console.ReadLine();
             Console.Write("Введите отчество:");
-            var middleName = Console.ReadLine();
+            var email = Console.ReadLine();
             Console.Write("Введите возраст:");
             var age = int.Parse(Console.ReadLine());
-            accessor.Insert(new Person(lastName, firstName, middleName, age));
+            accessor.Insert(new ContactInfo(){Address = address, Phone = phone, Email = email});
             people = accessor.GetAll();
             foreach (var person in people)
             {
@@ -88,9 +90,9 @@ namespace Persons
             var newPerson = new Person("Дубина", "Сергей", "Митрофанович", 40);
             accessor.Insert(newPerson);
             Console.WriteLine("Добавленный элемент: ");
-            Console.WriteLine(accessor.GetByLastName("Дубина").ToString());
+            Console.WriteLine(accessor.GetById("Дубина").ToString());
 
-            accessor.DeleteByLastName("Зверева");
+            accessor.DeleteById("Зверева");
             Console.WriteLine("После удаления Зверевой: ");
             Print(accessor);*/
             Console.ReadKey();

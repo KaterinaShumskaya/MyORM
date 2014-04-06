@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Persons
 {
-    using System.Data.SqlClient;
     using System.Data.SqlServerCe;
 
-    class ADONetPersonAccessor : IPersonAccessor
+    public class AdoNetDataAccessor : IDataAccessor<Person>
     {
-        private IList<Person> _persons = new List<Person>(); 
-
         public IList<Person> GetAll()
         {
             string queryString = "SELECT * from person";
@@ -36,38 +29,39 @@ namespace Persons
             return people;
         }
 
-        public IList<Person> GetByLastName(string lastName)
+        public Person GetById(int id)
         {
-            string queryString = "SELECT * from person where LastName LIKE @lastName";
+            string queryString = "SELECT * from person where Id = @id";
            
-            var people = new List<Person>();
+            var person = new Person();
             using (var command = new Command(queryString))
             {           
-                command.SqlCommand.Parameters.AddWithValue("@lastName", lastName);
+                command.SqlCommand.Parameters.AddWithValue("@id", id);
                 SqlCeDataReader reader = command.SqlCommand.ExecuteReader();
 
-                while (reader.Read())
+                if (reader.Read())
                 {
-                    people.Add(
+                    person = 
                         new Person(
                             reader["lastName"].ToString(),
                             reader["firstName"].ToString(),
                             reader["middleName"].ToString(),
-                            int.Parse(reader["age"].ToString())));
+                            int.Parse(reader["age"].ToString()));
                 }
 
                 reader.Close();
             }
-            return people;
+
+            return person;
         }
 
-        public void DeleteByLastName(string lastName)
+        public void DeleteById(int id)
         {
-            string queryString = "DELETE from person where (LastName = @lastName)";
+            string queryString = "DELETE from person where (Id = @id)";
            
             using (var command = new Command(queryString))
             {
-                command.SqlCommand.Parameters.AddWithValue("@lastName", lastName);
+                command.SqlCommand.Parameters.AddWithValue("@id", id);
                 command.SqlCommand.ExecuteNonQuery();
             }
         }

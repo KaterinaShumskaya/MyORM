@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Persons
 {
-    public interface IMap
+    using Persons.Attributes;
+
+    public class EntityBase
     {
+        [Identity("Id", "int")]
+        public int Id { get; set; }
     }
 }

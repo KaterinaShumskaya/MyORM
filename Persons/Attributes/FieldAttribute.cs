@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace Persons
 {
+    [AttributeUsage(AttributeTargets.Property)]
     public class FieldAttribute : TableAttribute
     {
-        public string Type { get; set; }
+        public readonly string Type;
+
+        public FieldAttribute(string name, string type) : base(name)
+        {
+            Type = type;
+        }
     }
 }
