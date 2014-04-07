@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Persons
+﻿namespace Persons.Attributes
 {
+    using System;
+
     [AttributeUsage(AttributeTargets.Class)]
     public class TableAttribute : Attribute
     {
@@ -13,7 +9,7 @@ namespace Persons
 
         public TableAttribute(string name)
         {
-            Name = name;
+            this.Name = name;
         }
     }
 }

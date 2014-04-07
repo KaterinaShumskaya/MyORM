@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Persons
+﻿namespace Persons.DataAccessors
 {
+    using System.Collections.Generic;
+
+    using Persons.Domain;
+
     /// <summary>
     /// Интерфейс, предоставляющий методы для работы с хранилищем данных.
     /// </summary>

@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Persons
+﻿namespace Persons.DataAccessors
 {
+    using System;
+    using System.Collections.Generic;
     using System.Data.SqlServerCe;
     using System.Linq;
     using System.Reflection;
     using System.Text;
 
     using Persons.Attributes;
+    using Persons.DataAccessors.DBUtils;
+    using Persons.Domain;
 
     public class MyORM<T> : IDataAccessor<T> where T : EntityBase
     {

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Persons
+﻿namespace Persons.Attributes
 {
+    using System;
+
     [AttributeUsage(AttributeTargets.Property)]
     public class FieldAttribute : TableAttribute
     {
@@ -13,7 +9,7 @@ namespace Persons
 
         public FieldAttribute(string name, string type) : base(name)
         {
-            Type = type;
+            this.Type = type;
         }
     }
 }

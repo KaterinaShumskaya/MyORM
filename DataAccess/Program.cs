@@ -8,6 +8,7 @@ namespace Persons
 {
     using System.Configuration;
 
+    using Persons.DataAccessors;
     using Persons.Domain;
 
     class Program

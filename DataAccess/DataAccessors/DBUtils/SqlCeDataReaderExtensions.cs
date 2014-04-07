@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Persons
+﻿namespace Persons.DataAccessors.DBUtils
 {
+    using System;
+    using System.Collections.Generic;
     using System.Data.SqlServerCe;
     using System.Reflection;
+
+    using Persons.Attributes;
 
     public static class SqlCeDataReaderExtensions
     {

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Persons.Domain
 {
+    using Persons.Attributes;
+
     [Table("ContactInfoTable")]
     public class ContactInfo : EntityBase
     {

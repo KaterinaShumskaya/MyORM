@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Persons
+﻿namespace Persons.DataAccessors
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     using FluentAssertions;
 
     using NUnit.Framework;
+
+    using Persons.Domain;
 
     [TestFixture]
     class ListAccessorTests
@@ -23,10 +22,10 @@ namespace Persons
         [SetUp]
         public void TestSetUp()
         {
-            _persons = new List<Person>();
-            _persons.Add(new Person("Иванов", "Иван", "Иванович", 20));
-            _persons.Add(new Person("Сергеев", "Иван", "Иванович", 30));
-            _accessor = new ListDataAccessor<Person>(_persons);
+            this._persons = new List<Person>();
+            this._persons.Add(new Person("Иванов", "Иван", "Иванович", 20));
+            this._persons.Add(new Person("Сергеев", "Иван", "Иванович", 30));
+            this._accessor = new ListDataAccessor<Person>(this._persons);
         }
 
         /// <summary>
@@ -35,7 +34,7 @@ namespace Persons
         [Test]
         public void GetAllShouldPassSuccessfully()
         {
-            IList<Person> persons = _accessor.GetAll();
+            IList<Person> persons = this._accessor.GetAll();
             persons.Count.Should().Be(2);
             persons.ShouldBeEquivalentTo(new List<Person>
                                               {
@@ -51,9 +50,9 @@ namespace Persons
         public void InsertShouldPassSuccessfully()
         {
             var person = new Person("Антонов", "Иван", "Петрович", 20);
-            _accessor.Insert(person);
-            _persons.Count.Should().Be(3);
-            _persons.SingleOrDefault(x => x.LastName.Equals("Антонов")).Should().NotBeNull();
+            this._accessor.Insert(person);
+            this._persons.Count.Should().Be(3);
+            this._persons.SingleOrDefault(x => x.LastName.Equals("Антонов")).Should().NotBeNull();
         }
 
         /// <summary>
@@ -62,7 +61,7 @@ namespace Persons
         [Test]
         public void GetByLastNameShouldPassSuccessfully()
         {
-            Person person = _accessor.GetById(1);
+            Person person = this._accessor.GetById(1);
             person.Should().NotBeNull();
             person.ShouldBeEquivalentTo(
                 new Person("Иванов", "Иван", "Иванович", 20));
@@ -74,8 +73,8 @@ namespace Persons
         [Test]
         public void DeleteByLastNameShouldPassSuccessfully()
         {
-            _accessor.DeleteById(1);
-            IList<Person> persons = _accessor.GetAll();
+            this._accessor.DeleteById(1);
+            IList<Person> persons = this._accessor.GetAll();
             persons.Count.Should().Be(1);
             persons.SingleOrDefault(x => x.LastName.Equals("Иванов")).Should().BeNull();
         }

@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
-
-namespace Persons
+﻿namespace Persons.DataAccessors
 {
+    using System.Collections.Generic;
     using System.Data.SqlServerCe;
+
+    using Persons.DataAccessors.DBUtils;
+    using Persons.Domain;
 
     public class AdoNetDataAccessor : IDataAccessor<Person>
     {
@@ -17,6 +19,7 @@ namespace Persons
                 {
                     people.Add(
                         new Person(
+                            int.Parse(reader["id"].ToString()),
                             reader["lastName"].ToString(),
                             reader["firstName"].ToString(),
                             reader["middleName"].ToString(),
