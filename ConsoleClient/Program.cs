@@ -14,9 +14,9 @@ namespace ConsoleClient
         private static int SelectMode()
         {
             Console.WriteLine("Введите цифру для выбора провайдера: 1-Список, 2-Файл, 3-ADO.Net, 4-CustomORM");
-            Console.WriteLine("Для завершения работы нажмите Esc");
+            Console.WriteLine("Для завершения работы нажмите Ctrl+C");
             var mode = 5;
-            var modeArr = new[] {1, 2, 3, 4 };
+            var modeArr = new[] { 1, 2, 3, 4 };
             while (!modeArr.Contains(mode))
             {
                 if (!int.TryParse(Console.ReadLine(), out mode) || !modeArr.Contains(mode))
@@ -34,7 +34,7 @@ namespace ConsoleClient
                               2-Выбрать по идентификатору,
                               3-Добавить данные, 
                               4-Удалить данные");
-            Console.WriteLine("Для смены режима введите 5, для выхода нажмите Esc");
+            Console.WriteLine("Для смены режима введите 5, для выхода нажмите Ctrl+C");
             var mode = 6;
             var modeArr = new[] { 1, 2, 3, 4, 5 };
             while (!modeArr.Contains(mode))
@@ -44,7 +44,7 @@ namespace ConsoleClient
                     Console.WriteLine("Неверный ввод!");
                 }
             }
-            Console.WriteLine(mode);
+
             return mode;
         }
 
@@ -71,9 +71,18 @@ namespace ConsoleClient
             switch (operation)
             {
                 case 1:
-                    foreach (var person in accessor.GetAll())
+                    var people = accessor.GetAll();
+                    if (people.Count == 0)
                     {
-                        Console.WriteLine(person.ToString());
+                        Console.WriteLine("Нет данных.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Получены следующие данные:");
+                        foreach (var person in people)
+                        {
+                            Console.WriteLine(person.ToString());
+                        }
                     }
 
                     break;
@@ -84,7 +93,10 @@ namespace ConsoleClient
                     {
                         Console.WriteLine("Неверный ввод.");
                     }
-                    accessor.GetById(id);
+                    var pers = accessor.GetById(id);
+                    Console.WriteLine(
+                        pers != null ? pers.ToString() : "Информации об объекте с заданным идентификатором не найдена.");
+
                     break;
                 case 3:
                     Console.Write("Введите фамилию:");
@@ -106,6 +118,7 @@ namespace ConsoleClient
                     }
 
                     accessor.Insert(new Person(surname, name, fatherName, age));
+                    Console.WriteLine("Информация успешно добавлена.");
                     break;
                 case 4:
                     Console.WriteLine("Введите идентификатор: ");
@@ -113,16 +126,24 @@ namespace ConsoleClient
                     {
                         Console.WriteLine("Неверный ввод.");
                     }
+                    pers = accessor.GetById(id);
+                    if (pers != null)
+                    {
+                        accessor.DeleteById(id);
+                        Console.WriteLine("Информация успешно удалена.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Информации об объекте с заданным идентификатором не найдена.");
+                    }
 
-                    accessor.DeleteById(id);
                     break;
             }
         }
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Для начала работы нажмите Enter");
-            while (Console.ReadKey().Key != ConsoleKey.Escape)
+            while (true)
             {
                 var mode = SelectMode();
                 var accessor = GetAccessor(mode);

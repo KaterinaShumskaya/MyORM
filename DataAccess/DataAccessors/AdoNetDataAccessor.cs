@@ -36,7 +36,7 @@
         {
             string queryString = "SELECT * from person where Id = @id";
            
-            var person = new Person();
+            Person person;
             using (var command = new Command(queryString))
             {           
                 command.SqlCommand.Parameters.AddWithValue("@id", id);
@@ -44,12 +44,16 @@
 
                 if (reader.Read())
                 {
-                    person = 
-                        new Person(
-                            reader["lastName"].ToString(),
-                            reader["firstName"].ToString(),
-                            reader["middleName"].ToString(),
-                            int.Parse(reader["age"].ToString()));
+                    person = new Person(
+                        int.Parse(reader["id"].ToString()),
+                        reader["lastName"].ToString(),
+                        reader["firstName"].ToString(),
+                        reader["middleName"].ToString(),
+                        int.Parse(reader["age"].ToString()));
+                }
+                else
+                {
+                    person = null;
                 }
 
                 reader.Close();

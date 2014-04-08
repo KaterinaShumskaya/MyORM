@@ -1,5 +1,6 @@
 ﻿namespace Persons.DataAccessors
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.IO;
@@ -30,7 +31,8 @@
 
         public void DeleteById(int id)
         {
-            this._data.Remove(this.GetById(id));  
+            var entity = GetById(id);
+            this._data.Remove(entity);  
             this.Serialize();
         }
 

@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{46CDAB57-01AA-4584-8962-51DAEF0D3D40}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfClient", "WpfClient\WpfClient.csproj", "{9E2BF8DB-6CC6-4491-9A17-D0C67A01219F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,11 +28,16 @@ Global
 		{46CDAB57-01AA-4584-8962-51DAEF0D3D40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46CDAB57-01AA-4584-8962-51DAEF0D3D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46CDAB57-01AA-4584-8962-51DAEF0D3D40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E2BF8DB-6CC6-4491-9A17-D0C67A01219F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E2BF8DB-6CC6-4491-9A17-D0C67A01219F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E2BF8DB-6CC6-4491-9A17-D0C67A01219F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E2BF8DB-6CC6-4491-9A17-D0C67A01219F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D1811111-5B60-420D-ACE7-108A36FC9040} = {2D88A885-37B0-4B38-B4E2-96FB0AB89423}
+		{9E2BF8DB-6CC6-4491-9A17-D0C67A01219F} = {2D88A885-37B0-4B38-B4E2-96FB0AB89423}
 	EndGlobalSection
 EndGlobal
