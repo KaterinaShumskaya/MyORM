@@ -63,7 +63,7 @@
                 }
                 catch (Exception)
                 {
-                    _data = null;
+                    _data = new List<T>();
                 }
             return this._data;
             }
