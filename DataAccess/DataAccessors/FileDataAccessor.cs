@@ -54,11 +54,18 @@
 
         private IList<T> Deserialize()
         {
-            using (var fileStream = new FileStream(this._fileName, FileMode.Open))
+            using (var fileStream = new FileStream(this._fileName, FileMode.OpenOrCreate))
             {
                 var xmlSerializer = new XmlSerializer(typeof(List<T>));
-                this._data = (IList<T>)xmlSerializer.Deserialize(fileStream);
-                return this._data;
+                try
+                {
+                    this._data = (IList<T>)xmlSerializer.Deserialize(fileStream);
+                }
+                catch (Exception)
+                {
+                    _data = null;
+                }
+            return this._data;
             }
         }
     }
