@@ -2,7 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Data;
     using System.Data.SqlServerCe;
+    using System.Data.SqlTypes;
     using System.Linq;
     using System.Reflection;
     using System.Text;
@@ -107,7 +109,17 @@
             {
                 foreach (var parameter in parameters)
                 {
-                    command.SqlCommand.Parameters.AddWithValue(parameter.Key, parameter.Value); 
+                    if (parameter.Value is DateTime)
+                    {
+                        var date = ((DateTime)parameter.Value).Date;
+                        command.SqlCommand.Parameters.AddWithValue(
+                            parameter.Key, new SqlDateTime(date.Year, date.Month, date.Day));
+                    }
+                    else
+                    {
+                        command.SqlCommand.Parameters.AddWithValue(parameter.Key, parameter.Value);
+                    }
+
                 }
                
                 command.SqlCommand.ExecuteNonQuery();

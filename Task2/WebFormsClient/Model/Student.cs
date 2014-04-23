@@ -29,7 +29,7 @@ namespace WebFormsClient.Model
             this.FirstName = firstName;
             this.LastName = lastName;
             this.MiddleName = middleName;
-            this.DateOfBirth = DateOfBirth;
+            this.DateOfBirth = date;
             StudentGroupId = studentGroupId;
 
         }

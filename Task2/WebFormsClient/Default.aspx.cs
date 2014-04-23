@@ -27,6 +27,7 @@ namespace WebFormsClient
  
         protected void Page_Load(object sender, EventArgs e)
         {
+            _groupAccessor = new MyORM<StudentGroup>();
             _studentGroups = this._groupAccessor.GetAll();
             _studentAccessor = new MyORM<Student>();
             _students = _studentAccessor.GetAll();

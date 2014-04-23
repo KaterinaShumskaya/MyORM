@@ -45,8 +45,7 @@ namespace WebFormsClient
 
         public void Load()
         {
-            _groupAccessor = new MyORM<StudentGroup>();
-            _studentAccessor = new MyORM<Student>();
+            
         }
     }
 }
