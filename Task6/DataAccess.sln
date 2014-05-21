@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IOCAbstraction", "IOCAbstra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPathClient", "XPathClient\XPathClient.csproj", "{44D87D21-D1AA-4C9E-91DC-74AE4305D216}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{4BEA4DEC-7D69-4028-BEEC-445BD966A49A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{44D87D21-D1AA-4C9E-91DC-74AE4305D216}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44D87D21-D1AA-4C9E-91DC-74AE4305D216}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44D87D21-D1AA-4C9E-91DC-74AE4305D216}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BEA4DEC-7D69-4028-BEEC-445BD966A49A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BEA4DEC-7D69-4028-BEEC-445BD966A49A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BEA4DEC-7D69-4028-BEEC-445BD966A49A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BEA4DEC-7D69-4028-BEEC-445BD966A49A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

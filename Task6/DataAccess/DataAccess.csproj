@@ -47,12 +47,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentAssertions">
-      <HintPath>..\packages\FluentAssertions.2.2.0.0\lib\net45\FluentAssertions.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -75,7 +69,6 @@
     <Compile Include="DataAccessors\FileDataAccessor.cs" />
     <Compile Include="DataAccessors\DBUtils\SqlCeDataReaderExtensions.cs" />
     <Compile Include="DataAccessors\IDataAccessor.cs" />
-    <Compile Include="DataAccessors\ListAccessorTests.cs" />
     <Compile Include="DataAccessors\ListDataAccessor.cs" />
     <Compile Include="DataAccessors\MyORM.cs" />
     <Compile Include="Domain\Person.cs" />
